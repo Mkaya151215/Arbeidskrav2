@@ -1,0 +1,63 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+  
+  .item img {
+    width: 80px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .item-info {
+    flex: 1;
+  }
+  
+  .item-title {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .item-price {
+    max-width: 0 5px;
+    font-size: 15px;
+  }
+  .item-quantity {
+    display: flex;
+    align-items: center;
+  }
+  .item-quantity,
+  .remove-btn {
+    margin-top: 10px;
+  }
+  
+  .quantity-btn,
+  .remove-btn {
+    font-size: 16px;
+    background-color: f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .remove-btn {
+    font-size: 16px;
+    color: ff0000;
+    border: n1px solis black;
+    background: red;
+    cursor: pointer;
+  }
+  #delete-all {
+      display: block;
+      margin: 20px auto;
+      font-size: 18px;
+      padding: 10px 20px;
+      background-color: #ff0000;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
