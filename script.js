@@ -25,6 +25,14 @@ class Products {
 class UI {
     displayProducts(products) {
         let result = "";
+        products=[
+            {
+                id:"1",
+                title:"2",
+                price:"3",
+                image:"http://127.0.0.1:5500/Arbeidskrav2/images/banner.jpg"
+            }
+        ];
         products.forEach(item => {
             result += `
             <div class="col-lg-4 col-md-6">
@@ -35,9 +43,11 @@ class UI {
                     <div class="product-hover">
                         <span class="product-title">${item.title}</span>
                         <span class="product-price">$ ${item.price}</span>
+                        <a href="details.html?id=${item.id}"> <button class="btn-see-details">  See details </button>  </a>
                         <button class="btn-add-to-cart" data-id=${item.id}>
                             <i class="fas fa-cart-shopping"></i>
                         </button>
+                        
                     </div>
                 </div>
             </div>
