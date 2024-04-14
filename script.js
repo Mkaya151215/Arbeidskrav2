@@ -25,14 +25,6 @@ class Products {
 class UI {
     displayProducts(products) {
         let result = "";
-        products=[
-            {
-                id:"1",
-                title:"2",
-                price:"3",
-                image:"http://127.0.0.1:5500/Arbeidskrav2/images/banner.jpg"
-            }
-        ];
         products.forEach(item => {
             result += `
             <div class="col-lg-4 col-md-6">
@@ -43,11 +35,9 @@ class UI {
                     <div class="product-hover">
                         <span class="product-title">${item.title}</span>
                         <span class="product-price">$ ${item.price}</span>
-                        <a href="details.html?id=${item.id}"> <button class="btn-see-details">  See details </button>  </a>
                         <button class="btn-add-to-cart" data-id=${item.id}>
                             <i class="fas fa-cart-shopping"></i>
                         </button>
-                        
                     </div>
                 </div>
             </div>
@@ -236,3 +226,46 @@ document.addEventListener("DOMContentLoaded", () => {
         ui.cartLogic();
     })
 });
+
+const apiUrl = 'https://661433702fc47b4cf27bdd78.mockapi.io/products';
+
+async function searchProducts() {
+    const searchInput = document.getElementById('searchInput');
+    const searchTerm = searchInput.value.trim();
+    try {
+        const response = await fetch(`${apiUrl}?search=${searchTerm}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const products = await response.json();
+        displayResults(products);
+    } catch (error) {
+        console.error('Error:', error);
+        displayError('Failed to fetch data. Please try again.');
+    }
+}
+
+function displayResults(products) {
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+
+    if (products.length === 0) {
+        resultContainer.innerHTML = 'No results found.';
+        return;
+    }
+
+    const ul = document.createElement('ul');
+    products.forEach(product => {
+        const li = document.createElement('li');
+        li.classList.add('product');
+        li.innerHTML = `<img src="${product.image}" alt="${product.name}">
+                        <span>${product.name} - $${product.price}</span>`;
+        ul.appendChild(li);
+    });
+    resultContainer.appendChild(ul);
+}
+
+function displayError(message) {
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = `<div class="error">${message}</div>`;
+}
